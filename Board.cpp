@@ -2,12 +2,12 @@
 #include "Board.hpp"
 
 const char EMPTY = '_';
+const int CHECK = 2;
 
 using namespace std;
 
 namespace ariel
 {
-
     void Board::post(unsigned int row, unsigned int column, Direction direction, const string &message)
     {
         for (unsigned int i = 0; i < message.length(); i++)
@@ -34,7 +34,7 @@ namespace ariel
             {
                 str += _my_board.at(cell);
             }
-            catch (...)
+            catch (out_of_range)
             {
                 str += EMPTY;
             }
@@ -44,48 +44,30 @@ namespace ariel
 
     void Board::show()
     {
-        // unsigned int lastColum = 0;
-        // pair<unsigned int, unsigned int> cell;
+        unsigned int curr = 0;
+        unsigned int temp = 0;
+        unsigned int last_col = 0; 
 
-        // for (auto i = _my_board.begin(); i != _my_board.end(); ++i)
-        // {
-        //     cell.first = (i->first).first;
-        //     cell.second = (i->first).second;
-        //     cout << _my_board[cell] << " ";
-        //     unsigned int spaces = (i->first).second - lastColum;
-        //     if (spaces > 1)
-        //     {
-        //         for (unsigned int i = 0; i < spaces; i++)
-        //         {
-        //             cout << " - ";
-        //         }
-        //     }
-        //     lastColum = (i->first).second;
-        // }
-        // cout << endl;
-
-        unsigned int lastUse = 0;
-        unsigned int lastColum = 0;
-        for (auto itr = _my_board.begin(); itr != _my_board.end(); ++itr)
+        for (auto runner = _my_board.begin(); runner != _my_board.end(); ++runner)
         {
-            unsigned int currentUse = (itr->first).first;
-            if (lastUse != currentUse)
+            curr = (runner->first).first;
+            if (temp != curr)
             {
-                cout << endl;
-                lastColum = 0;
-                lastUse = currentUse;
+                temp = curr;
+                last_col = 0;
+                cout << "\n";
             }
-            unsigned int spaces = (itr->first).second - lastColum;
-            if (spaces > 1)
+            unsigned int blanks = ((runner->first).second - last_col);
+            if (blanks >= CHECK)
             {
-                for (unsigned int i = 0; i < spaces; i++)
+                for (unsigned int i = 0; i < blanks; i++)
                 {
                     cout << " - ";
                 }
             }
-            lastColum = (itr->first).second;
-            cout << itr->second;
+            last_col = (runner->first).second;
+            cout << runner->second;
         }
-        cout << endl;
+        cout << "\n";
     }
 }
