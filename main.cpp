@@ -17,7 +17,7 @@ int main()
     
     int option = 0;
 
-    cout << "Hey there, Welcome to the Meassage Board game!" << endl
+    cout << "Hey there, Welcome to the Message Board game!" << endl
          << endl
          << "To post to the board, please insert '1'" << endl
          << "To read from the board, please insert '2'" << endl
@@ -48,7 +48,7 @@ int main()
             cin >> direction;
             direction == 1 ? dir = Direction::Horizontal : dir = Direction::Vertical;
             cout << endl
-                 << "Enter your desired post: ";
+                 << "Publish your post: ";
             cin >> msg;
             board.post(row, column, dir, msg);
             break;
