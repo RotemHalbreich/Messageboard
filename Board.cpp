@@ -2,7 +2,6 @@
 #include "Board.hpp"
 
 const char EMPTY = '_';
-const int CHECK = 2;
 
 using namespace std;
 
@@ -23,7 +22,6 @@ namespace ariel
     string Board::read(unsigned int row, unsigned int column, Direction direction, unsigned int length)
     {
         string str;
-
         for (unsigned int i = 0; i < length; i++)
         {
             pair<unsigned int, unsigned int> cell;
@@ -46,7 +44,7 @@ namespace ariel
     {
         unsigned int curr = 0;
         unsigned int temp = 0;
-        unsigned int last_col = 0; 
+        unsigned int last_col = 0;
 
         for (auto runner = _my_board.begin(); runner != _my_board.end(); ++runner)
         {
@@ -58,14 +56,14 @@ namespace ariel
                 cout << "\n";
             }
             unsigned int blanks = ((runner->first).second - last_col);
-            if (blanks >= CHECK)
+            if (blanks > 1)
             {
                 for (unsigned int i = 0; i < blanks; i++)
                 {
-                    cout << " - ";
+                    cout << " ";
                 }
             }
-            last_col = (runner->first).second;
+            last_col = (runner->first).second + 1;
             cout << runner->second;
         }
         cout << "\n";

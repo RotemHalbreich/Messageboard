@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <map>
-#include <limits.h>
 #include "Direction.hpp"
 
 namespace ariel
@@ -9,8 +8,7 @@ namespace ariel
     class Board
     {
     private:
-        typedef std::pair<unsigned int, unsigned int> spot;
-        std::map<spot, char> _my_board;
+        std::map<std::pair<unsigned int, unsigned int>, char> _my_board;
 
     public:
         Board() {}
